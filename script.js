@@ -48,4 +48,14 @@ sizePicker.addEventListener("input", function(){
 
 });
 
+//listen to the mousemove event on sketchpad
+sketchpad.addEventListener("mousemove", function(event){
+    //target is a box
+    let target = event.target;
+    //color the box
+    target.style.backgroundColor = currentColor;
+});
+
+
+
 
