@@ -7,12 +7,16 @@ const colorPicker = document.querySelector("#range-color");
 const sizePicker = document.querySelector("#range-size");
 const resetButton = document.querySelector(".button-reset");
 const RGBButton = document.querySelector(".button-RGB");
+const eraseButton = document.querySelector(".button-erase");
 
 //initially current color is gray
 let currentColor = "#AAAAAA";
 
 //initially RGB mode is off
 let RGB = false;
+
+//initially coloring is on
+let erase = false;
 
 //create and append size * size boxes into the sketchpad
 function appendBoxes(){
@@ -57,8 +61,12 @@ sizePicker.addEventListener("input", function(){
 sketchpad.addEventListener("mousemove", function(event){
     //target is a box
     let target = event.target;
+    //if erase mode is on
+    if(erase){
+        target.style.backgroundColor = "#FFFFFF";
+    }
     //if RGB mode is on
-    if(RGB){
+    else if(RGB){
         //color randomly
         target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)},
                                             ${Math.floor(Math.random() * 256)}, 
@@ -88,5 +96,14 @@ RGBButton.addEventListener("click", function(){
     }
 });
 
+//when button is pressed toggle erase variable
+eraseButton.addEventListener("click", function(){
+    if(erase){
+        erase = false;
+    }
+    else{
+        erase = true;
+    }
+});
 
 
