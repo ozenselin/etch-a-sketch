@@ -9,11 +9,13 @@ const sizePicker = document.querySelector("#range-size");
 //initially current color is gray
 let currentColor = "#AAAAAA";
 
-//create and append 64 boxes into the sketchpad
-for(let i = 0; i<size * size; i++){
-    const box = document.createElement("div");
-    box.classList.add("box", "box--default");
-    sketchpad.append(box);
+//create and append size * size boxes into the sketchpad
+function appendBoxes(){
+    for(let i = 0; i<size * size; i++){
+        const box = document.createElement("div");
+        box.classList.add("box", "box--default");
+        sketchpad.append(box);
+    }
 }
 
 //when another color is picked
@@ -21,6 +23,9 @@ colorPicker.addEventListener("input", function(){
     //update the global variable: current color
     currentColor = colorPicker.value;
 });
+
+//create and append 64 boxes into the sketchpad
+appendBoxes();
 
 //when size changes, remove all boxes
 //create and append new boxes
@@ -35,12 +40,8 @@ sizePicker.addEventListener("input", function(){
     size = sizePicker.value;
     
     //create and append size * size boxes into the sketchpad
-    //according to the new size
-    for(let i = 0; i<size * size; i++){
-        const box = document.createElement("div")
-        box.classList.add("box", "box--default");
-        sketchpad.appendChild(box);
-    }
+    appendBoxes();
+
     //update grid values
     sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     sketchpad.style.gridTemplateRows = `repeat(${size}, 1fr)`;
