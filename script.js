@@ -5,6 +5,7 @@ let size = 64;
 const sketchpad = document.querySelector(".sketchpad");
 const colorPicker = document.querySelector("#range-color");
 const sizePicker = document.querySelector("#range-size");
+const resetButton = document.querySelector(".button-reset");
 
 //initially current color is gray
 let currentColor = "#AAAAAA";
@@ -54,6 +55,14 @@ sketchpad.addEventListener("mousemove", function(event){
     let target = event.target;
     //color the box
     target.style.backgroundColor = currentColor;
+});
+
+//when reset button is pressed
+resetButton.addEventListener("click", function(){
+    //set every box to white background
+    sketchpad.childNodes.forEach(box => {
+        box.style["background-color"] = "#FFFFFF";
+    });
 });
 
 
