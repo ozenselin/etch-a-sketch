@@ -58,15 +58,15 @@ button{
 
 .sketchpad.sketchpad--default{
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(64, 1fr);
+    grid-template-rows: repeat(64, 1fr);
 }
 .box.box--default{
     background-color: white;
     border: 1px solid black;
 }
 .box.box--colored{
-    
+
 }
 
   
