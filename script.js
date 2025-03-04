@@ -6,9 +6,13 @@ const sketchpad = document.querySelector(".sketchpad");
 const colorPicker = document.querySelector("#range-color");
 const sizePicker = document.querySelector("#range-size");
 const resetButton = document.querySelector(".button-reset");
+const RGBButton = document.querySelector(".button-RGB");
 
 //initially current color is gray
 let currentColor = "#AAAAAA";
+
+//initially RGB mode is off
+let RGB = false;
 
 //create and append size * size boxes into the sketchpad
 function appendBoxes(){
@@ -53,8 +57,17 @@ sizePicker.addEventListener("input", function(){
 sketchpad.addEventListener("mousemove", function(event){
     //target is a box
     let target = event.target;
-    //color the box
-    target.style.backgroundColor = currentColor;
+    //if RGB mode is on
+    if(RGB){
+        //color randomly
+        target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)},
+                                            ${Math.floor(Math.random() * 256)}, 
+                                            ${Math.floor(Math.random() * 256)})`;
+    }
+    //otherwise, apply the current color
+    else{
+        target.style.backgroundColor = currentColor;
+    }
 });
 
 //when reset button is pressed
@@ -65,6 +78,15 @@ resetButton.addEventListener("click", function(){
     });
 });
 
+//when button is pressed toggle RGB
+RGBButton.addEventListener("click", function(){
+    if(RGB){
+        RGB = false;
+    }
+    else{
+        RGB = true;
+    }
+});
 
 
 
